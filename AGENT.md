@@ -1,14 +1,22 @@
-# SIOL (Say It Out Loud)
+# SIOL Coding Standards
 
-## Purpose
-A cross-platform PWA for dictation cleanup using Gemini 3 Flash. 
+## 🛠 Tech Stack
+- Frontend: Next.js + Tailwind CSS.
+- Persistence: localStorage for API keys, local_vocabulary, and Prompt history.
+- Voice-to-Text: Transformers.js (Distil-Whisper) for local browser-based transcription.
+- Browser APIs: Document PiP API, Navigator Clipboard.
 
-## Key Features
-- Floating Window: Uses the Document Picture-in-Picture API.
-- AI Logic: Cleans voice-to-text typos and shorthand.
-- Automation: Automatically copies the result to the clipboard.
+## 🤖 AI Guidelines
+- Architecture: "Local-First, Cloud-Fallback" Hybrid logic.
+- Target Model: Gemini 3 Flash.
+- Local Fallback: window.ai (Gemini Nano).
+- Prompting: Use a "Reflective" loop. Always include context from 'local_vocabulary' in the system prompt.
 
-## Tech Stack
-- Frontend: HTML5 / Tailwind CSS / Vanilla JS.
-- API: Google Generative AI (Gemini 3 Flash).
-- Deployment: PWA (offline-capable via Service Worker).
+## 🏗 Architecture
+- Single Page Application (SPA) / PWA.
+- Floating Window: Must be triggered via a user gesture (PiP requirement).
+
+## 📝 Repository Hygiene
+- No hardcoded keys. Use an input field for the Gemini API Key.
+- Log feedback events to a local 'correction_history' JSON object for later optimization.
+- Include helper scripts for auto-paste in README.md.
